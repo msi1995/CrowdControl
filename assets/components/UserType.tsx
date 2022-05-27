@@ -1,15 +1,21 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableHighlight,
     useWindowDimensions, Alert} from 'react-native';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
+import { useState } from 'react';
+
 
 function UserType({ navigation }){
+
+  const [ isOrganizer, setIsOrganizer ] = useState(false)
+  const [ isAttendee, setIsAttendee ] = useState(true)
+
 
     const { height, width } = useWindowDimensions()
     const buttonStyles = StyleSheet.create({
         container: {
           width: width * 0.375,
           marginTop: height * 0.04,
-          marginHorizontal: width * 0.05
+          marginHorizontal: width * 0.05,
         },
       });
 
@@ -18,11 +24,11 @@ function UserType({ navigation }){
         <View style={chooseTypeStyles2.container}>
           <Text numberOfLines={1} style={textStyles.container}>Are you organizing an event, or attending?</Text>
           <TouchableHighlight style={buttonStyles.container}>
-          <Button title={"Organizing"} onPress={() => navigation.navigate('UserMain')}/>
+          <Button color={"#2fd3d5"} title={"Organizing"} onPress={() => navigation.navigate('OrganizerMain')}/>
           </TouchableHighlight>
 
           <TouchableHighlight style={buttonStyles.container}>
-          <Button title="Attending" onPress={() => navigation.navigate('OrganizerMain')}/>
+          <Button color={"#2fd3d5"} title="Attending" onPress={() => isAttendee ? navigation.navigate('UserEvent') : navigation.navigate('UserMain', {setIsAttendee})}/>
           </TouchableHighlight>
         </View>
       </View>

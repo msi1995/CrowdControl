@@ -5,43 +5,7 @@ import { Form, FormItem } from 'react-native-form-component';
 import Realm from "realm"
 
 
-function OrganizerMain(){
-
-    const EventSchema = {
-        name: "Event",
-        properties: {
-          _id: "int",
-          eventname: "string",
-          eventvenueaddr: "string",
-          customcode: "string?",
-        },
-        primaryKey: "_id",
-      };
-
-    //  (async () => {
-    //     const realm = await Realm.open({
-    //         path: "myrealm",
-    //         schema: [EventSchema],
-    //         });
-        
-    
-    //         let event1, event2;
-    //         realm.write(() => {
-    //           event1 = realm.create("Event", {
-    //             _id: 1,
-    //             eventname: "go grocery shopping",
-    //             eventvenueaddr: "Open",
-    //           });
-    //           event2 = realm.create("Event", {
-    //             _id: 2,
-    //             eventname: "go exercise",
-    //             eventvenueaddr: "Open",
-    //           });
-    //           console.log(`created two tasks: ${event1.name} & ${event2.name}`);
-    //         });
-    //         // use task1 and task2
-    //     })
-            
+function UserRequestHelp(){
 
 
     const styles = StyleSheet.create({
@@ -55,7 +19,7 @@ function OrganizerMain(){
       });
 
 
-    const [ eventName, SetEventName ] = useState ("")
+    const [ requestEmergency, SetRequestEmergency ] = useState ("")
     const [ eventVenueOrAddr, SetEventVenueOrAddr ] = useState ("")
     const [ eventCustomCode, SetEventCustomCode ] = useState ("")
 
@@ -81,24 +45,24 @@ function OrganizerMain(){
         <View style={{margin: 20, marginTop: 60}}>
             <Form 
             buttonStyle={{backgroundColor: "#2fd3d5"}}
-            buttonText="Register Event"
-            onButtonPress={() => sendtoDB({eventName, eventVenueOrAddr, eventCustomCode})}>
+            buttonText="Send Message"
+            onButtonPress={() => sendtoDB({requestEmergency, eventVenueOrAddr, eventCustomCode})}>
                 <FormItem
-                label="Event Name "
+                label="Emergency? Yes/No "
                 isRequired
-                value={eventName}
-                onChangeText={(eventName) => SetEventName(eventName)}
+                value={requestEmergency}
+                onChangeText={(requestEmergency) => SetRequestEmergency(requestEmergency)}
                 asterik
                 />
                 <FormItem
-                label="Venue or Address "
-                isRequired
+                label="If emergency, where are you? (Seat #, Section, etc.) "
                 value={eventVenueOrAddr}
                 onChangeText={(eventVenueOrAddr) => SetEventVenueOrAddr(eventVenueOrAddr)}
                 asterik
                 />
                 <FormItem
-                label="Custom Attendee Code, if desired"
+                label="Details/Question "
+                isRequired
                 value={eventCustomCode}
                 onChangeText={(eventCustomCode) => SetEventCustomCode(eventCustomCode)}
                 />
@@ -108,4 +72,4 @@ function OrganizerMain(){
 }
 
 
-export default OrganizerMain;
+export default UserRequestHelp;

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Button, TouchableHighlight,
-    useWindowDimensions} from 'react-native';
+    useWindowDimensions,
+    TouchableOpacity} from 'react-native';
 import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -25,17 +26,18 @@ function Splash({ navigation }){
       const textStyles = StyleSheet.create({
         container: {
           color: '#ffffff',
-          fontSize: 17,
-          marginVertical: 10
+          fontSize: 19,
+          marginVertical: 10,
+          textAlign: 'center',
         },
       });
 
 
     return(
 
-    <SafeAreaView style={styles.container}>
-        <Text numberOfLines={1} onPress={handlePress} style={textStyles.container}>{string}</Text>
-        <Text numberOfLines={1} onPress={handlePress} style={textStyles.container}>Tap to continue</Text>
+    <SafeAreaView style={styles.container} onTouchStart={() => handlePress()}>
+        <Text numberOfLines={1} style={textStyles.container}>{string}</Text>
+        <Text numberOfLines={1} style={[textStyles.container, {fontSize: 14}]}>Tap anywhere to continue.</Text>
     </SafeAreaView>
 
     )

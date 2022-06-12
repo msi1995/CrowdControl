@@ -14,14 +14,14 @@ function UserEvent( {navigation} ){
 
 
     useEffect(() => {
-        eventMessages.length === 0 ? setTextColor('black') : setTextColor('white')
+        eventMessages.length === 0 ? setTextColor('black') : setTextColor('rgba(0,0,0,1)')
       }, [eventMessages]);
 
 
     //have to use ( instead of { when mapping in react native...??
     return(
         <View style={{width: '100%', height: '100%'}}>
-        <Text style={{textAlign: 'center', width: '100%', backgroundColor:'#b0feff', paddingVertical: 10, fontSize: 24, borderBottomWidth: 2, borderColor: 'black'}}>{eventName}</Text>
+        <Text style={{textAlign: 'center', width: '100%', backgroundColor:'rgba(0,0,0,0.9)', color: 'white', paddingVertical: 10, fontSize: 24, borderBottomWidth: 2, borderColor: 'black'}}>{eventName}</Text>
         <ScrollView 
         onTouchStart={ () => {setButtonOpacity(0.10)}}
         onTouchEnd={ () => {setButtonOpacity(1.0)}}
@@ -33,7 +33,7 @@ function UserEvent( {navigation} ){
         <View style={{marginTop: 0,  height: '100%'}}>
             {eventMessages.length === 0 ? <Text style={{fontSize: 22, textAlign: 'center', paddingVertical: '65%'}}>No messages at this time.</Text> : <View></View>}
             {eventMessages.map((message) => (
-                <Text key={message} style={{textAlign: 'left', height: 66, backgroundColor:'#04b8bb', borderBottomWidth: 1, borderColor: 'black', paddingLeft: 10, textAlignVertical: 'center' }}>{message}</Text>
+                <Text key={message} style={{textAlign: 'left', height: 66,  backgroundColor:'rgba(40,200,190,.5)', borderBottomWidth: 1, borderColor: 'black', paddingLeft: 10, textAlignVertical: 'center' }}>{message}</Text>
             ))}
         </View>
         </ScrollView>

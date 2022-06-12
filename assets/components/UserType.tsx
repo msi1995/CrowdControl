@@ -7,8 +7,16 @@ import { useState } from 'react';
 function UserType({ navigation }){
 
   const [ isOrganizer, setIsOrganizer ] = useState(false)
-  const [ isAttendee, setIsAttendee ] = useState(true)
+  const [ isAttendee, setIsAttendee ] = useState(false)
 
+
+  function handleOrganizerClick(){
+    isOrganizer ? navigation.navigate('OrganizerEvent') : navigation.navigate('OrganizerMain', {isOrganizer, setIsOrganizer});
+  }
+
+  function handleAttendeeClick(){
+    isAttendee ? navigation.navigate('UserEvent') : navigation.navigate('UserMain', {isAttendee, setIsAttendee});
+  }
 
     const { height, width } = useWindowDimensions()
     const buttonStyles = StyleSheet.create({
@@ -24,11 +32,11 @@ function UserType({ navigation }){
         <View style={chooseTypeStyles2.container}>
           <Text numberOfLines={1} style={textStyles.container}>Are you organizing an event, or attending?</Text>
           <TouchableHighlight style={buttonStyles.container}>
-          <Button color={"#2fd3d5"} title={"Organizing"} onPress={() => navigation.navigate('OrganizerMain')}/>
+          <Button color={"#2fd3d5"} title="Organizing" onPress={() => handleOrganizerClick() }/>
           </TouchableHighlight>
 
           <TouchableHighlight style={buttonStyles.container}>
-          <Button color={"#2fd3d5"} title="Attending" onPress={() => isAttendee ? navigation.navigate('UserEvent') : navigation.navigate('UserMain', {setIsAttendee})}/>
+          <Button color={"#2fd3d5"} title="Attending" onPress={() => handleAttendeeClick() }/>
           </TouchableHighlight>
         </View>
       </View>

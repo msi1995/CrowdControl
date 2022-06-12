@@ -2,11 +2,16 @@ import { StyleSheet, Text, View} from 'react-native';
 import { useState } from 'react';
 import { Form, FormItem } from 'react-native-form-component';
 
-function UserMain( {setIsAttendee} ){
+function UserMain( { route, navigation } ){
+
+    const { isAttendee, setIsAttendee } = route.params;
 
     function sendtoDB(props: any){
         const eventCode = props.eventCode
         console.log(eventCode)
+
+        setIsAttendee(true)
+        navigation.navigate('UserEvent')
 
     }
 
@@ -26,7 +31,6 @@ function UserMain( {setIsAttendee} ){
             onChangeText={(eventCode) => SetEventCode(eventCode)}
             />
         </Form>
-        <Text>{eventCode}</Text>
     </View>
     )
 

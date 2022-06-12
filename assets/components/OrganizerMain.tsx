@@ -1,48 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { Button, StyleSheet, Text, TextInput, View, TextStyle, TextInputProps, Alert} from 'react-native';
 import { Form, FormItem } from 'react-native-form-component';
-import Realm from "realm"
 
+function OrganizerMain({ route, navigation }){
 
-function OrganizerMain(){
-
-    const EventSchema = {
-        name: "Event",
-        properties: {
-          _id: "int",
-          eventname: "string",
-          eventvenueaddr: "string",
-          customcode: "string?",
-        },
-        primaryKey: "_id",
-      };
-
-    //  (async () => {
-    //     const realm = await Realm.open({
-    //         path: "myrealm",
-    //         schema: [EventSchema],
-    //         });
-        
-    
-    //         let event1, event2;
-    //         realm.write(() => {
-    //           event1 = realm.create("Event", {
-    //             _id: 1,
-    //             eventname: "go grocery shopping",
-    //             eventvenueaddr: "Open",
-    //           });
-    //           event2 = realm.create("Event", {
-    //             _id: 2,
-    //             eventname: "go exercise",
-    //             eventvenueaddr: "Open",
-    //           });
-    //           console.log(`created two tasks: ${event1.name} & ${event2.name}`);
-    //         });
-    //         // use task1 and task2
-    //     })
-            
-
+  const { isOrganizer, setIsOrganizer } = route.params;
 
     const styles = StyleSheet.create({
         input: {
@@ -61,6 +24,7 @@ function OrganizerMain(){
 
     function sendtoDB(props: any){
 
+        setIsOrganizer(true);
 
         //type Nullable<T> = T | null;
         const eventName: string = props.eventName
@@ -74,6 +38,8 @@ function OrganizerMain(){
         console.log(eventName)
         console.log(eventVenueOrAddr)
         console.log(eventCustomCode)
+
+        navigation.navigate('OrganizerEvent', {eventName})
 
     }
 

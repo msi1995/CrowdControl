@@ -11,6 +11,7 @@ import UserMain from './assets/components/UserMain';
 import UserEvent from './assets/components/UserEvent';
 import OrganizerMain from './assets/components/OrganizerMain';
 import UserRequestHelp from './assets/components/UserRequestHelp';
+import OrganizerEvent from './assets/components/OrganizerEvent';
 
 export default function App() {
 
@@ -85,6 +86,18 @@ const Stack = createNativeStackNavigator();
         <Stack.Screen
           name="UserRequestHelp"
           component={UserRequestHelp}
+          options={{ headerShown: true,
+            headerTitle: () => (
+                <Image style={{ marginTop: -10, marginLeft: -35, borderRadius: 4, margin: 0, padding: 0, width: 350, height: 50 }} source={require("./assets/crowdcontrol.png")} />
+              ),
+            headerStyle:{
+              backgroundColor: '#04b8bb',
+            }
+          }}
+        />
+        <Stack.Screen
+          name="OrganizerEvent"
+          component={OrganizerEvent}
           options={{ headerShown: true,
             headerTitle: () => (
                 <Image style={{ marginTop: -10, marginLeft: -35, borderRadius: 4, margin: 0, padding: 0, width: 350, height: 50 }} source={require("./assets/crowdcontrol.png")} />
